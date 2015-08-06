@@ -4,12 +4,16 @@
       <div class="image">
         <div class="img-wrap">
           <% #TODO 商品イメージ %>
-          <%= image_tag("no-image.png" , alt: @item.title) %>
+          <% if @item.large_image.present? %>
+            <%= image_tag(@item.large_image, alt: @item.title) %>
+          <% else %>
+            <%= image_tag("no-image.png" , alt: @item.title) %>
+          <% end %>
         </div>
       </div>
       <div class="title">
         <% #TODO 商品タイトル %>
-        仮タイトル
+        <%= @item.title %>
       </div>
       <%= render 'action' , item: @item %>
     </div>
@@ -18,13 +22,18 @@
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
-
+          <% @have_users.each do |have_user| %>
+            <%= link_to gravatar_for(have_user, size: 30), controller: "users", action: "show", id: have_user.id %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Wantしたユーザー一覧 %>
+          <% @want_users.each do |want_user| %>
+            <%= link_to gravatar_for(want_user, size: 30), controller: "users", action: "show", id: want_user.id %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
