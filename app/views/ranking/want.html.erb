@@ -1,0 +1,21 @@
+<h2>Wantアイテムランキング</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>アイテム名称</th>
+            <th>Wantユーザー数</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% i = 1 %>
+        <% @want_ranking_hash.each do |item_id, sum_users| %>
+        <tr>
+            <td><%= i %></td>
+            <td><%= Item.find(item_id).title %></td>
+            <td><%= sum_users %></td>
+        </tr>
+            <% i += 1 %>
+        <% end %>
+    </tbody>
+</table>
